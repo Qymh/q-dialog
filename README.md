@@ -2,6 +2,10 @@
 
 一个精致的移动端vue弹窗组件
 
+## Demo
+
+[Demo演示](https://qymh.github.io/q-dialog/demoDist/index.html)
+
 ## 下载
 
 ## Props

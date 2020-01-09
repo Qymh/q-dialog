@@ -304,6 +304,20 @@ const QDialog = createComponent({
                           />
                         </svg>
                       )}
+                      {v.loading && type === 'cancel' && !this.$slots.cancel && (
+                        <svg
+                          class='q-dialog-core-btns-chunk-loading'
+                          viewBox='25 25 50 50'
+                        >
+                          <circle
+                            class='q-dialog-core-btns-chunk-loading__circle'
+                            cx='50'
+                            cy='50'
+                            r='20'
+                            fill='none'
+                          />
+                        </svg>
+                      )}
                     </div>
                   );
                 })}
