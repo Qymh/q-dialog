@@ -1,0 +1,187 @@
+.q-dialog {
+  &-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.3;
+    z-index: 5;
+  }
+  &-core {
+    width: 590px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    display: table;
+    background-color: #fff;
+    z-index: 6;
+    border-radius: 6px;
+    font-size: 28px;
+    &__title {
+      font-size: 40px;
+      line-height: 40px;
+      padding: 50px 30px 30px 30px;
+      font-weight: 500;
+      text-align: center;
+    }
+    &__details {
+      color: #666666;
+      padding: 0 40px 40px 40px;
+      text-align: center;
+      max-height: 350px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      &--richText,
+      &--slot {
+        color: #666666;
+        padding: 0 40px 40px 40px;
+        text-align: center;
+        max-height: 350px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    &-btns {
+      position: relative;
+      display: flex;
+      &-chunk {
+        flex-shrink: 1;
+        flex-grow: 1;
+        width: 0;
+        display: flex;
+        height: 90px;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        line-height: 32px;
+        font-weight: 400;
+        padding: 0 10px;
+        &--confirm {
+          &--line {
+            position: relative;
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 20%;
+              height: 120%;
+              width: 1px;
+              transform-origin: top left;
+              transform: scaleY(0.5);
+              background-color: #eeeeee;
+            }
+          }
+        }
+        &-loading {
+          height: 40px;
+          width: 40px;
+          animation: loading-rotate 2s linear infinite;
+          margin-right: 20px;
+          &__circle {
+            animation: loading-dash 1.5s ease-in-out infinite;
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: 0;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke: #40a1ff;
+          }
+        }
+      }
+    }
+    &-btns::before {
+      content: '';
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      transform-origin: top left;
+      transform: scaleY(0.5);
+      border-top: 1px solid #eeeeee;
+    }
+    &__closeIcon {
+      background-image: url('https://s.ankerjiedian.com/cdb/res/images/ankerbox_h5/dialog_close-56x56-d4d85370.png');
+      height: 28px;
+      width: 28px;
+      background-size: 100% 100%;
+      position: absolute;
+      right: 0;
+      top: -58px;
+    }
+  }
+}
+.animated {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+.fadeOut {
+  animation-name: fadeOut;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.3;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.zoomIn {
+  animation-name: zoomIn;
+}
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+.zoomOut {
+  animation-name: zoomOut;
+}
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120;
+  }
+}
