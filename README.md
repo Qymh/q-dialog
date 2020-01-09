@@ -26,7 +26,7 @@
 | btns             |  String  |  false   |         []          |                按钮数组 |
 | closeIcon        | Boolean  |  false   |        false        |        是否展示关闭按钮 |
 | lock             | Boolean  |  false   |        false        |      是否点击背景可关闭 |
-| beforeClose      | Function |  false   | (action,done) => {} |            关闭前的回调 |
+| beforeClose      | Function |  false   | (type,done) => {} |            关闭前的回调 |
 
 ### 实例下的 options
 
@@ -47,7 +47,7 @@
 | btns             |  String  |  false   |         []          |                按钮数组 |
 | closeIcon        | Boolean  |  false   |        false        |        是否展示关闭按钮 |
 | lock             | Boolean  |  false   |        false        |      是否点击背景可关闭 |
-| beforeClose      | Function |  false   | (action,done) => {} |            关闭前的回调 |
+| beforeClose      | Function |  false   | (type,done) => {} |            关闭前的回调 |
 
 和组件的 props 相比属性完全一样 只是少了一个 v-model
 
@@ -87,7 +87,7 @@ this.$dialog
 
 这个函数有两个参数
 
-第一个参数是`action`
+第一个参数是`type`
 
 - confirm 点击确认按钮
 - cancel 点击取消按钮
@@ -111,8 +111,6 @@ this.$dialog
 ### cancel
 
 取消按钮插槽 取消按钮插槽优先级高于 props `btns` 高于 props `cancelBtn`
-
-详情插槽
 
 ## events
 

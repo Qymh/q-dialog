@@ -6,9 +6,9 @@
   "scripts": {
     "check": "yarn upgrade-interactive --latest",
     "dev:demo": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js",
-    "lint": "eslint . --ext .js,.ts,.d.ts && stylelint **/*.scss",
+    "lint": "eslint . --ext .js,.ts,.tsx,.d.ts && stylelint **/*.scss",
     "build": "yarn build:pack && yarn build:demo",
-    "build:demo": "cross-env NODE_ENV=production webpack --config build/webpack.demo.js",
+    "build:demo": "rimraf demoDist && cross-env NODE_ENV=production webpack --config build/webpack.demo.js",
     "build:pack": "node build/rollup.package.js",
     "test": "cross-env NODE_ENV=test karma start tests/karma.config.js",
     "test:single": "cross-env NODE_ENV=test karma start tests/karma.config.js --single-run",
@@ -145,7 +145,7 @@
       "stylelint --fix",
       "git add"
     ],
-    "*.(t|j)s": [
+    "*.(t|j)sx?": [
       "eslint --ext .js,.ts,.tsx,.d.ts --fix",
       "git add"
     ]
