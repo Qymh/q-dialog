@@ -146,8 +146,12 @@
       "stylelint --fix",
       "git add"
     ],
-    "*.(t|j)sx?": [
-      "eslint --ext .js,.ts,.tsx,.d.ts --fix",
+    "*.(t|j)s": [
+      "eslint --ext .js,.ts,.d.ts --fix",
+      "git add"
+    ],
+    "*.(t|j)sx": [
+      "eslint --ext .tsx --fix",
       "git add"
     ]
   }
