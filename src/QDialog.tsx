@@ -270,7 +270,7 @@ const QDialog = createComponent({
                   if (arr.length === 2 && type === 'confirm') {
                     className += ' q-dialog-core-btns-chunk--confirm--line';
                   }
-                  const color = v.color || this[`${type}TextColor`];
+                  const color = v.color;
                   return (
                     <div
                       class={className}
@@ -279,17 +279,29 @@ const QDialog = createComponent({
                       onClick={this.doBtnClick.bind(this, v, type)}
                     >
                       {type === 'confirm' && this.$slots.confirm && (
-                        <div>{this.$slots.confirm}</div>
+                        <div class='q-dialog-core-btns-chunk--confirm-slot'>
+                          {this.$slots.confirm}
+                        </div>
                       )}
                       {type === 'cancel' && this.$slots.cancel && (
-                        <div>{this.$slots.cancel}</div>
+                        <div class='q-dialog-core-btns-chunk--cancel-slot'>
+                          {this.$slots.cancel}
+                        </div>
                       )}
                       {!v.loading &&
                         type === 'confirm' &&
-                        !this.$slots.confirm && <div>{v.value}</div>}
+                        !this.$slots.confirm && (
+                          <div class='q-dialog-core-btns-chunk--confirm__value'>
+                            {v.value}
+                          </div>
+                        )}
                       {!v.loading &&
                         type === 'cancel' &&
-                        !this.$slots.cancel && <div>{v.value}</div>}
+                        !this.$slots.cancel && (
+                          <div class='q-dialog-core-btns-chunk--cancel__value'>
+                            {v.value}
+                          </div>
+                        )}
                       {v.loading && type === 'confirm' && !this.$slots.confirm && (
                         <svg
                           class='q-dialog-core-btns-chunk-loading'

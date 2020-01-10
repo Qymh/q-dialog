@@ -1,9 +1,11 @@
 import { createLocalVue, mount } from '@vue/test-utils';
 import QDialog from '../../src/index';
 import assert from 'assert';
+import { Type } from 'src/QDialog';
+
 const localVue = createLocalVue();
-localVue.prototype.$dialog = QDialog;
 localVue.use(QDialog);
+localVue.prototype.$dialog = QDialog;
 
 describe('q-dialog', () => {
   describe('props', () => {
@@ -439,21 +441,277 @@ describe('q-dialog', () => {
         '<div>123</div>'
       );
     });
+
+    it('cancel', () => {
+      const wrapper = mount(
+        {
+          template:
+            '<q-dialog title="测试" type="confirm"><div slot="cancel">测试取消</div></q-dialog>'
+        },
+        {
+          localVue
+        }
+      );
+      assert.strictEqual(
+        wrapper.find('.q-dialog-core-btns-chunk--cancel-slot').element
+          .innerHTML,
+        '<div>测试取消</div>'
+      );
+    });
+
+    it('confirm', () => {
+      const wrapper = mount(
+        {
+          template:
+            '<q-dialog title="测试"><div slot="confirm">测试确认</div></q-dialog>'
+        },
+        {
+          localVue
+        }
+      );
+      assert.strictEqual(
+        wrapper.find('.q-dialog-core-btns-chunk--confirm-slot').element
+          .innerHTML,
+        '<div>测试确认</div>'
+      );
+    });
   });
 
   describe('instance', () => {
-    it('promise close', () => {
-      // const wrapper = mount(
-      //   {
-      //     template: '<div>123</div>'
-      //   },
-      //   {
-      //     localVue
-      //   }
-      // );
-      // wrapper.vm.$dialog.show({
-      //   title: '123'
-      // });
+    it('confirm', done => {
+      const localVue = createLocalVue();
+      localVue.use(QDialog);
+      localVue.prototype.$dialog = QDialog;
+      const wrapper: any = mount(
+        {
+          template: '<div>123</div>'
+        },
+        {
+          localVue
+        }
+      );
+      wrapper.vm.$dialog.show(
+        {
+          title: '123'
+        },
+        localVue
+      );
+      const timer = setTimeout(() => {
+        const $item: any = document.getElementsByClassName(
+          'q-dialog-core-btns-chunk--confirm'
+        )[0];
+        $item.click();
+        const innerTimer = setTimeout(() => {
+          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          clearTimeout(innerTimer);
+          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
+          done();
+        }, 300);
+        clearTimeout(timer);
+      }, 200);
+    });
+
+    it('cancel', done => {
+      const localVue = createLocalVue();
+      localVue.use(QDialog);
+      localVue.prototype.$dialog = QDialog;
+      const wrapper: any = mount(
+        {
+          template: '<div>123</div>'
+        },
+        {
+          localVue
+        }
+      );
+      wrapper.vm.$dialog.show(
+        {
+          title: '123',
+          type: 'confirm'
+        },
+        localVue
+      );
+      const timer = setTimeout(() => {
+        const $item: any = document.getElementsByClassName(
+          'q-dialog-core-btns-chunk--cancel'
+        )[0];
+        $item.click();
+        const innerTimer = setTimeout(() => {
+          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          clearTimeout(innerTimer);
+          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
+          done();
+        }, 300);
+        clearTimeout(timer);
+      }, 200);
+    });
+
+    it('close by icon', done => {
+      const wrapper: any = mount(
+        {
+          template: '<div>123</div>'
+        },
+        {
+          localVue
+        }
+      );
+      wrapper.vm.$dialog.show(
+        {
+          title: '123',
+          type: 'confirm',
+          closeIcon: true
+        },
+        localVue
+      );
+      const timer = setTimeout(() => {
+        const $item: any = document.getElementsByClassName(
+          'q-dialog-core__closeIcon'
+        )[0];
+        $item.click();
+        const innerTimer = setTimeout(() => {
+          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          clearTimeout(innerTimer);
+          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
+          done();
+        }, 300);
+        clearTimeout(timer);
+      }, 200);
+    });
+
+    it('close by background', done => {
+      const localVue = createLocalVue();
+      localVue.use(QDialog);
+      localVue.prototype.$dialog = QDialog;
+      const wrapper: any = mount(
+        {
+          template: '<div>123</div>'
+        },
+        {
+          localVue
+        }
+      );
+      wrapper.vm.$dialog.show(
+        {
+          title: '123',
+          type: 'confirm'
+        },
+        localVue
+      );
+      const timer = setTimeout(() => {
+        const $item: any = document.getElementsByClassName(
+          'q-dialog-background'
+        )[0];
+        $item.click();
+        const innerTimer = setTimeout(() => {
+          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          clearTimeout(innerTimer);
+          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
+          done();
+        }, 300);
+        clearTimeout(timer);
+      }, 200);
+    });
+
+    it('beforeClose by icon', done => {
+      const wrapper: any = mount(
+        {
+          template: '<div>123</div>'
+        },
+        {
+          localVue
+        }
+      );
+      wrapper.vm.$dialog.show(
+        {
+          title: '123',
+          type: 'confirm',
+          closeIcon: true,
+          beforeClose: (type: Type, done: Function) => {
+            done();
+          }
+        },
+        localVue
+      );
+      const timer = setTimeout(() => {
+        const $item: any = document.getElementsByClassName(
+          'q-dialog-core__closeIcon'
+        )[0];
+        $item.click();
+        const innerTimer = setTimeout(() => {
+          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          clearTimeout(innerTimer);
+          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
+          done();
+        }, 300);
+        clearTimeout(timer);
+      }, 200);
+    });
+
+    it('beforeClose by background', done => {
+      const localVue = createLocalVue();
+      localVue.use(QDialog);
+      localVue.prototype.$dialog = QDialog;
+      const wrapper: any = mount(
+        {
+          template: '<div>123</div>'
+        },
+        {
+          localVue
+        }
+      );
+      wrapper.vm.$dialog.show(
+        {
+          title: '123',
+          type: 'confirm',
+          beforeClose: (type: Type, done: Function) => {
+            done();
+          }
+        },
+        localVue
+      );
+      const timer = setTimeout(() => {
+        const $item: any = document.getElementsByClassName(
+          'q-dialog-background'
+        )[0];
+        $item.click();
+        const innerTimer = setTimeout(() => {
+          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          clearTimeout(innerTimer);
+          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
+          done();
+        }, 300);
+        clearTimeout(timer);
+      }, 200);
+    });
+
+    it('instance close', done => {
+      const localVue = createLocalVue();
+      localVue.use(QDialog);
+      localVue.prototype.$dialog = QDialog;
+      const wrapper: any = mount(
+        {
+          template: '<div>123</div>'
+        },
+        {
+          localVue
+        }
+      );
+      wrapper.vm.$dialog.show(
+        {
+          title: '123',
+          type: 'confirm'
+        },
+        localVue
+      );
+      const timer = setTimeout(() => {
+        wrapper.vm.$dialog.close();
+        const innerTimer = setTimeout(() => {
+          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          clearTimeout(innerTimer);
+          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
+          done();
+        }, 300);
+        clearTimeout(timer);
+      }, 200);
     });
   });
 });

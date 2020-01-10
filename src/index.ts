@@ -6,7 +6,7 @@ import VueCompositionApi from '@vue/composition-api';
 
 import './index.scss';
 
-const QDialogVueConstructor = Vue.extend(QDialog);
+let QDialogVueConstructor = Vue.extend(QDialog);
 
 let instance: any = '';
 let _resolve: (value?: BtnsTrans) => void,
@@ -44,9 +44,13 @@ export default {
     Vue.use(VueCompositionApi);
     Vue.component(QDialog.name, QDialog);
   },
-  show(opts: Dictionary = {}) {
+  show(opts: Dictionary = {}, Vue: VueConstructor) {
     _promise = new Promise((resolve, reject) => {
       if (!instance) {
+        // for unit test
+        if (Vue) {
+          QDialogVueConstructor = Vue.extend(QDialog);
+        }
         instance = new QDialogVueConstructor();
         instance.$mount();
         document.body.appendChild(instance.$el);
