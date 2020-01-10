@@ -37,7 +37,9 @@ declare module 'vue/types/vue' {
     $dialog: Instance;
   }
 }
-
-export interface QDialog extends PluginFunction<any> {}
+export interface QDialog {
+  install: () => void;
+}
 declare const QDialog: QDialog;
+
 export default QDialog;

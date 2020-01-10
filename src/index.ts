@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import Vue, { VueConstructor } from 'vue';
+import { VueConstructor } from 'vue';
 // eslint-disable-next-line no-unused-vars
 import QDialog, { Type, BtnsTrans, Dictionary } from './QDialog';
 import VueCompositionApi from '@vue/composition-api';
 
 import './index.scss';
 
-let QDialogVueConstructor = Vue.extend(QDialog);
+let QDialogVueConstructor: VueConstructor;
 
 let instance: any = '';
 let _resolve: (value?: BtnsTrans) => void,
@@ -43,6 +43,7 @@ export default {
   install(Vue: VueConstructor) {
     Vue.use(VueCompositionApi);
     Vue.component(QDialog.name, QDialog);
+    QDialogVueConstructor = Vue.extend(QDialog);
   },
   show(opts: Dictionary = {}, Vue: VueConstructor) {
     _promise = new Promise((resolve, reject) => {

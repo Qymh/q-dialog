@@ -8,6 +8,51 @@
 
 ## 下载
 
+- npm
+
+```shell
+npm install q-dialog
+```
+
+- cnpm
+
+```shell
+cnpm install q-dialog
+```
+
+- yarn
+
+```shell
+yarn add q-dialog
+```
+
+## 引用
+
+```javascript
+import QDialog from "q-dialog";
+import "q-dialog/dist/q-dialog.css";
+Vue.use(QDialog);
+Vue.prototype.$dialog = QDialog;
+```
+
+引用后就可以通过两种方式唤醒弹窗
+
+一种是组件`q-dialog`
+
+一种是this实例调用`this.$dialog.show()`和`this.$dialog.close()`
+
+如果更改调用实例的方式可以手动指定
+
+```javascript
+import QDialog from "q-dialog";
+import "q-dialog/dist/q-dialog.css";
+Vue.use(QDialog);
+Vue.prototype.$dialog = QDialog.show
+Vue.prototype.$dialog.close = QDialog.close
+```
+
+更改后的方法便是`this.$dialog()`和`this.$dialog.close()`
+
 ## Props
 
 ### 组件下的 props
@@ -61,6 +106,7 @@ this.$dialog
 ```
 
 再点击确认按钮的情况下在`promise`的`then`回调执行
+
 再点击取消按钮的情况下在`promise`的`catch`回调执行
 
 **如果有`beforeClose`方法会优先调用 beforeClose this.\$dialog.show 不会返回 promise**
@@ -72,6 +118,8 @@ this.$dialog
 ### props 解析
 
 #### btns 解析
+
+btns的优先级高于其他设置按钮的props
 
 - btns
   - value 按钮文案
@@ -106,11 +154,11 @@ this.$dialog
 
 ### confirm
 
-确认按钮插槽 确认按钮插槽优先级高于 props `btns` 高于 props `confirmBtn`
+确认按钮插槽 确认按钮插槽优先级高于 props `btns` 和 props `confirmBtn`
 
 ### cancel
 
-取消按钮插槽 取消按钮插槽优先级高于 props `btns` 高于 props `cancelBtn`
+取消按钮插槽 取消按钮插槽优先级高于 props `btns` 和 props `cancelBtn`
 
 ## events
 
