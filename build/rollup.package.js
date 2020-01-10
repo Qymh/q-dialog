@@ -6,6 +6,7 @@ const fs = require('fs-extra');
 const commonjs = require('rollup-plugin-commonjs');
 const resolve = require('rollup-plugin-node-resolve');
 const terser = require('terser');
+const replace = require('rollup-plugin-replace');
 
 const config = {
   es: {
@@ -24,13 +25,14 @@ const config = {
   },
   umd: {
     input: 'src/index.ts',
+    env: 'development',
     output: {
       file: 'dist/q-dialog.js',
       minFile: 'dist/q-dialog.min.js',
       cssFile: 'dist/q-dialog.css',
       cssMinFile: 'dist/q-dialog.min.css',
       format: 'umd',
-      name: 'QLayout'
+      name: 'QDialog'
     }
   }
 };
@@ -62,6 +64,15 @@ async function build() {
     };
     if (key !== 'umd') {
       configuration.external = ['vue', '@vue/composition-api'];
+    } else {
+      configuration.external = ['vue'];
+    }
+    if (chunk.env) {
+      configuration.plugins.unshift(
+        replace({
+          'process.env.NODE_ENV': JSON.stringify(chunk.env)
+        })
+      );
     }
     await rollup
       .rollup(configuration)
