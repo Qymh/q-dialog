@@ -1,6 +1,6 @@
 {
   "name": "q-dialog",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A delicate vue mobile dialog",
   "main": "dist/q-dialog.esm.js",
   "scripts": {
