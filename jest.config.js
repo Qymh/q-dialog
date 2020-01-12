@@ -9,5 +9,10 @@ module.exports = {
   },
   collectCoverageFrom: ['src/**/*.tsx?'],
   coverageDirectory: 'coverage',
-  collectCoverage: true
+  collectCoverage: true,
+  globals: {
+    'ts-jest': {
+      diagnostics: false
+    }
+  }
 };
