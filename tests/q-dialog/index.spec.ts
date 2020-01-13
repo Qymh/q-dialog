@@ -502,9 +502,11 @@ describe('q-dialog', () => {
         )[0];
         $item.click();
         const innerTimer = setTimeout(() => {
-          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          const $dialog: any = document.getElementsByClassName(
+            'q-dialog-core'
+          )[0];
+          assert.strictEqual($dialog.style.display, 'none');
           clearTimeout(innerTimer);
-          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
           done();
         }, 300);
         clearTimeout(timer);
@@ -536,9 +538,11 @@ describe('q-dialog', () => {
         )[0];
         $item.click();
         const innerTimer = setTimeout(() => {
-          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          const $dialog: any = document.getElementsByClassName(
+            'q-dialog-core'
+          )[0];
+          assert.strictEqual($dialog.style.display, 'none');
           clearTimeout(innerTimer);
-          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
           done();
         }, 300);
         clearTimeout(timer);
@@ -568,9 +572,11 @@ describe('q-dialog', () => {
         )[0];
         $item.click();
         const innerTimer = setTimeout(() => {
-          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          const $dialog: any = document.getElementsByClassName(
+            'q-dialog-core'
+          )[0];
+          assert.strictEqual($dialog.style.display, 'none');
           clearTimeout(innerTimer);
-          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
           done();
         }, 300);
         clearTimeout(timer);
@@ -602,9 +608,11 @@ describe('q-dialog', () => {
         )[0];
         $item.click();
         const innerTimer = setTimeout(() => {
-          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          const $dialog: any = document.getElementsByClassName(
+            'q-dialog-core'
+          )[0];
+          assert.strictEqual($dialog.style.display, 'none');
           clearTimeout(innerTimer);
-          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
           done();
         }, 300);
         clearTimeout(timer);
@@ -637,9 +645,11 @@ describe('q-dialog', () => {
         )[0];
         $item.click();
         const innerTimer = setTimeout(() => {
-          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          const $dialog: any = document.getElementsByClassName(
+            'q-dialog-core'
+          )[0];
+          assert.strictEqual($dialog.style.display, 'none');
           clearTimeout(innerTimer);
-          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
           done();
         }, 300);
         clearTimeout(timer);
@@ -674,9 +684,11 @@ describe('q-dialog', () => {
         )[0];
         $item.click();
         const innerTimer = setTimeout(() => {
-          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          const $dialog: any = document.getElementsByClassName(
+            'q-dialog-core'
+          )[0];
+          assert.strictEqual($dialog.style.display, 'none');
           clearTimeout(innerTimer);
-          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
           done();
         }, 300);
         clearTimeout(timer);
@@ -705,9 +717,11 @@ describe('q-dialog', () => {
       const timer = setTimeout(() => {
         wrapper.vm.$dialog.close();
         const innerTimer = setTimeout(() => {
-          const $dialog = document.getElementsByClassName('q-dialog-core')[0];
+          const $dialog: any = document.getElementsByClassName(
+            'q-dialog-core'
+          )[0];
+          assert.strictEqual($dialog.style.display, 'none');
           clearTimeout(innerTimer);
-          assert.ok(Array.from($dialog.classList).includes('zoomOut'));
           done();
         }, 300);
         clearTimeout(timer);

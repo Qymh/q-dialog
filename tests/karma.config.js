@@ -21,17 +21,11 @@ module.exports = function(config) {
     },
     port: 9876,
     colors: true,
-    customLaunchers: {
-      Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
     client: {
       mocha: {
         timeout: 4000
       }
     },
-    browsers: ['Chrome']
+    browsers: ['ChromeHeadless']
   });
 };
