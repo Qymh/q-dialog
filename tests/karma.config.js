@@ -27,6 +27,12 @@ module.exports = function(config) {
         timeout: 4000
       }
     },
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     browsers: ['ChromeHeadless']
   });
 };
