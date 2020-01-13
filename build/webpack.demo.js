@@ -1,6 +1,5 @@
 const path = require('path');
 const os = require('os');
-const Css = require('mini-css-extract-plugin');
 const Vue = require('vue-loader/lib/plugin');
 const Html = require('html-webpack-plugin');
 const Progress = require('progress-bar-webpack-plugin');
@@ -57,34 +56,11 @@ const base = {
       },
       {
         test: /\.css$/,
-        use: [
-          isDev
-            ? 'vue-style-loader'
-            : {
-                loader: Css.loader,
-                options: {
-                  hmr: isDev
-                }
-              },
-          'css-loader',
-          'postcss-loader'
-        ]
+        use: ['vue-style-loader', 'css-loader', 'postcss-loader']
       },
       {
         test: /\.s[ac]ss$/,
-        use: [
-          isDev
-            ? 'vue-style-loader'
-            : {
-                loader: Css.loader,
-                options: {
-                  hmr: isDev
-                }
-              },
-          'css-loader',
-          'sass-loader',
-          'postcss-loader'
-        ]
+        use: ['vue-style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i,
@@ -107,9 +83,6 @@ const base = {
   },
   plugins: [
     new Vue(),
-    new Css({
-      filename: isDev ? '[name].css' : '[name].[hash].css'
-    }),
     new Html({
       template: resolve('demo/index.html')
     }),
