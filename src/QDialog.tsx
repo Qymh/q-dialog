@@ -34,7 +34,10 @@ const QDialog = createComponent({
     // 构造btns
     const generateBtnsTrans = () => {
       if (props.btns && props.btns.length) {
-        btnsTrans.value = props.btns as BtnsTrans[];
+        btnsTrans.value = (props.btns as BtnsTrans[]).map(v => {
+          v.loading = false;
+          return v;
+        });
       } else if (props.type === 'alert') {
         btnsTrans.value = [
           {
