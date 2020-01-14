@@ -1,5 +1,4 @@
 const base = require('../build/webpack.test');
-process.env.CHROME_BIN = require('puppeteer').executablePath();
 module.exports = function(config) {
   config.set({
     frameworks: ['mocha'],
