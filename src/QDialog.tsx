@@ -3,10 +3,6 @@ import { _doInstanceClose, _doPromiseInstanceClose } from './index';
 
 export type Type = 'confirm' | 'cancel' | 'icon' | 'background';
 
-export type Props = {
-  btns: [];
-};
-
 export type Dictionary<T = any> = {
   [x: string]: T;
 };
@@ -246,11 +242,21 @@ const QDialog = createComponent({
           <div class='q-dialog-core' v-show={this.show}>
             {this.title && <div class='q-dialog-core__title'>{this.title}</div>}
             {this.details && (
-              <div class='q-dialog-core__details'>{this.details}</div>
+              <div
+                class={[
+                  'q-dialog-core__details',
+                  !this.title && 'q-dialog-core--notitle'
+                ]}
+              >
+                {this.details}
+              </div>
             )}
             {this.richText && (
               <div
-                class='q-dialog-core__details--richText'
+                class={[
+                  'q-dialog-core__details--richText',
+                  !this.title && 'q-dialog-core--notitle'
+                ]}
                 domPropsInnerHTML={this.richText}
               ></div>
             )}

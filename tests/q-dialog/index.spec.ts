@@ -48,6 +48,40 @@ describe('q-dialog', () => {
       );
     });
 
+    it('notitle with details', () => {
+      const wrapper = mount(
+        {
+          template: '<q-dialog details="详情"></q-dialog>'
+        },
+        {
+          localVue
+        }
+      );
+      assert.ok(
+        wrapper
+          .find('.q-dialog-core__details')
+          .classes()
+          .includes('q-dialog-core--notitle')
+      );
+    });
+
+    it('notitle with details', () => {
+      const wrapper = mount(
+        {
+          template: '<q-dialog richText="<div>123</div>"></q-dialog>'
+        },
+        {
+          localVue
+        }
+      );
+      assert.ok(
+        wrapper
+          .find('.q-dialog-core__details--richText')
+          .classes()
+          .includes('q-dialog-core--notitle')
+      );
+    });
+
     it('details', () => {
       const wrapper = mount(
         {

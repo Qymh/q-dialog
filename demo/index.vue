@@ -39,6 +39,9 @@
     <van-cell title="按钮插槽">
       <van-switch v-model="show13" />
     </van-cell>
+    <van-cell title="无title">
+      <van-switch v-model="show14" />
+    </van-cell>
     <q-dialog v-model="show1" title="提醒弹窗" details="详情" />
     <q-dialog v-model="show2" title="确认弹窗" details="详情" type="confirm" />
     <q-dialog
@@ -83,6 +86,7 @@
         {{ text13 }}
       </div>
     </q-dialog>
+    <q-dialog v-model="show14" details="无标题" />
   </div>
 </template>
 
@@ -113,6 +117,7 @@ export default {
       show11: false,
       show12: false,
       show13: false,
+      show14: false,
       timer13: null,
       text13: '确认(5秒)'
     };

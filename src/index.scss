@@ -22,6 +22,9 @@
     z-index: 6;
     border-radius: 6px;
     font-size: 28px;
+    &--notitle {
+      padding-top: 60px !important;
+    }
     &__title {
       font-size: 40px;
       line-height: 40px;
