@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/Qymh/q-dialog/compare/v0.1.1...v0.1.2) (2020-01-15)
+
+
+### Features
+
+* 🎸 add notitle ([3890366](https://github.com/Qymh/q-dialog/commit/38903663f46a5274100f3d5a8b246aaf3453b658))
+
+
+
 ## 0.1.1 (2020-01-10)
 
 
