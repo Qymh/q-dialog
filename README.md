@@ -2,6 +2,8 @@
 
 一个精致的移动端vue弹窗组件
 
+[更新日志](https://github.com/Qymh/q-dialog/blob/master/CHANGELOG.md)
+
 ## Demo
 
 [Demo演示](https://qymh.github.io/q-dialog/demoDist/index.html)
