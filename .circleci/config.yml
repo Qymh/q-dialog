@@ -13,4 +13,4 @@ jobs:
           paths:
             - node_module
           key: q-dialog-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: npm run test:ci
+      - run: npm run lint
