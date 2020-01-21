@@ -15,7 +15,7 @@ export type BtnsTrans = {
 
 const QDialog = createComponent({
   name: 'QDialog',
-  setup(props, { parent, emit }) {
+  setup(props, { parent, emit, root }) {
     const btnsTrans = ref<BtnsTrans[]>([]);
 
     // 完成回调
@@ -30,8 +30,12 @@ const QDialog = createComponent({
     // 构造btns
     const generateBtnsTrans = () => {
       if (props.btns && props.btns.length) {
-        btnsTrans.value = (props.btns as BtnsTrans[]).map(v => {
-          v.loading = false;
+        btnsTrans.value = (props.btns as BtnsTrans[]).map((v, i) => {
+          root.$set(
+            v,
+            'loading',
+            (btnsTrans.value[i] && btnsTrans.value[i].loading) || false
+          );
           return v;
         });
       } else if (props.type === 'alert') {

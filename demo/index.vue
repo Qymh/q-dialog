@@ -61,7 +61,7 @@
       v-model="show7"
       title="异步关闭"
       details="详情"
-      type="confirm"
+      :btns="btns4"
       :beforeClose="beforeClose7"
     />
     <q-dialog v-model="show8" title="详情插槽">
@@ -154,7 +154,7 @@ export default {
         this.$dialog.show({
           title: '异步实例调用',
           details: '详情',
-          type: 'confirm',
+          btns: this.btns4,
           closeIcon: true,
           beforeClose: (type, done) => {
             if (type === 'cancel' || type === 'confirm') {
