@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/Qymh/q-dialog/compare/v0.1.2...v0.1.3) (2020-01-21)
+
+
+### Bug Fixes
+
+* 🐛 loading is not reactive when use btns ([574a03d](https://github.com/Qymh/q-dialog/commit/574a03dd3d3c89a7c88b41d7f0700cd4a1998fa2))
+
+
+
 ## [0.1.2](https://github.com/Qymh/q-dialog/compare/v0.1.1...v0.1.2) (2020-01-15)
 
 
